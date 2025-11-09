@@ -1,0 +1,4 @@
+-- speech_in.py
+Ear of jarvis -- 
+--use speech_recognition library
+--- sr.microphone and listen try for speech and catch for any unexpected error and export the function listen_for_speech

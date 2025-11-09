@@ -1,13 +1,21 @@
-import speech_recognition as sr
+from core.speech_out import speak
+from core.speech_in import listen_for_speech
+from core.actions import perform_action
 
-r = sr.Recognizer()
+def main():
+    speak("Hello Krishna, I’m online and ready.")
+    while True:
+        query = listen_for_speech()
 
-with sr.Microphone() as source:
-    print("🎤 Say something...")
-    audio = r.listen(source)
+        if not query:
+            continue
 
-try:
-    text = r.recognize_google(audio)
-    print(f"🧠 You said: {text}")
-except Exception as e:
-    print("❌ Could not understand audio.", e)
+        if "stop" in query or "exit" in query:
+            speak("Goodbye Krishna!")
+            break
+
+        action = perform_action(query)
+        speak(action)
+
+if __name__ == "__main__":
+    main()
